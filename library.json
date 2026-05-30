@@ -1,9 +1,21 @@
 {
   "cloud": "dtozr9ul9",
   "root": "Keira",
-  "synced_at": "2026-05-30T15:26:00.590Z",
-  "count": 106,
+  "synced_at": "2026-05-30T15:40:03.758Z",
+  "count": 107,
   "photos": [
+    {
+      "public_id": "Keira/24a85a0aef1eec4662cafdec8d203454 копия",
+      "folder": "Keira",
+      "tags": [],
+      "url": "https://res.cloudinary.com/dtozr9ul9/image/upload/v1780155600/Keira/24a85a0aef1eec4662cafdec8d203454%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.jpg",
+      "thumb": "https://res.cloudinary.com/dtozr9ul9/image/upload/w_400,h_533,c_fill,q_auto,f_auto/v1780155600/Keira/24a85a0aef1eec4662cafdec8d203454 копия.jpg",
+      "format": "jpg",
+      "width": 1724,
+      "height": 1724,
+      "bytes": 809153,
+      "created_at": "2026-05-30T15:40:00Z"
+    },
     {
       "public_id": "расставь_н_pasozc",
       "folder": "Keira/yen/CorvoBianco/WhiteDress",

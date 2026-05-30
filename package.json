@@ -1,0 +1,13 @@
+{
+  "name": "keira-os",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Operational dashboard for AI influencer planning",
+  "scripts": {
+    "sync": "node sync.js",
+    "upload": "node kupload.js"
+  },
+  "dependencies": {
+    "cloudinary": "^2.5.0"
+  }
+}
