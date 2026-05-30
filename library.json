@@ -1,9 +1,23 @@
 {
   "cloud": "dtozr9ul9",
   "root": "Keira",
-  "synced_at": "2026-05-30T15:40:03.758Z",
-  "count": 107,
+  "synced_at": "2026-05-30T15:44:02.254Z",
+  "count": 108,
   "photos": [
+    {
+      "public_id": "Keira/home/24a85a0aef1eec4662cafdec8d203454 копия",
+      "folder": "Keira/home",
+      "tags": [
+        "home"
+      ],
+      "url": "https://res.cloudinary.com/dtozr9ul9/image/upload/v1780155839/Keira/home/24a85a0aef1eec4662cafdec8d203454%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.jpg",
+      "thumb": "https://res.cloudinary.com/dtozr9ul9/image/upload/w_400,h_533,c_fill,q_auto,f_auto/v1780155839/Keira/home/24a85a0aef1eec4662cafdec8d203454 копия.jpg",
+      "format": "jpg",
+      "width": 1724,
+      "height": 1724,
+      "bytes": 809153,
+      "created_at": "2026-05-30T15:43:59Z"
+    },
     {
       "public_id": "Keira/24a85a0aef1eec4662cafdec8d203454 копия",
       "folder": "Keira",
