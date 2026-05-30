@@ -37,23 +37,32 @@ if (!CLOUD || !KEY || !SECRET) {
 
 const auth = 'Basic ' + Buffer.from(KEY + ':' + SECRET).toString('base64');
 
-// ───────── список через Admin API (без prefix-фильтра) ─────────
+// ───────── список через Search API (возвращает etag) ─────────
 async function listAll() {
   const all = [];
   let cursor = null;
   let page = 0;
   do {
     page++;
-    const url = new URL(`https://api.cloudinary.com/v1_1/${CLOUD}/resources/image`);
-    url.searchParams.set('type', 'upload');
-    url.searchParams.set('max_results', '500');
-    if (cursor) url.searchParams.set('next_cursor', cursor);
+    const body = {
+      expression: 'resource_type:image',
+      max_results: 500,
+      with_field: ['tags', 'context']
+    };
+    if (cursor) body.next_cursor = cursor;
 
-    const r = await fetch(url, { headers: { Authorization: auth } });
+    const r = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD}/resources/search`, {
+      method: 'POST',
+      headers: {
+        'Authorization': auth,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
     if (!r.ok) {
-      const body = await r.text();
-      console.error(`\n✗ Cloudinary API вернул ${r.status}:`);
-      console.error(body);
+      const txt = await r.text();
+      console.error(`\n✗ Cloudinary Search API вернул ${r.status}:`);
+      console.error(txt);
       if (r.status === 401) console.error('\n  → Проверь API_KEY / API_SECRET в .env');
       if (r.status === 404) console.error('\n  → Проверь CLOUDINARY_CLOUD в .env');
       process.exit(1);
@@ -149,6 +158,7 @@ function inRoot(folder) {
       width: r.width,
       height: r.height,
       bytes: r.bytes,
+      etag: r.etag, // MD5 файла — нужен для kclean чтобы безопасно сопоставлять дубли
       created_at: r.created_at
     };
   });

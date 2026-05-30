@@ -51,7 +51,7 @@ try {
 cloudinary.config({ cloud_name: CLOUD, api_key: KEY, api_secret: SECRET });
 
 // ───────── local source folder ─────────
-const LOCAL_ROOT = process.argv[2] || path.join(os.homedir(), 'Pictures', 'Keira');
+const LOCAL_ROOT = process.argv[2] || env.LOCAL_PICTURES_ROOT || path.join(os.homedir(), 'Pictures', 'Keira');
 
 if (!fs.existsSync(LOCAL_ROOT)) {
   console.error(`\n✗ Локальная папка не найдена: ${LOCAL_ROOT}`);
