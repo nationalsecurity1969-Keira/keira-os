@@ -1,0 +1,14 @@
+# Cloudinary credentials — НИКОГДА не коммитить
+.env
+.env.local
+.env.*.local
+
+# Node
+node_modules/
+
+# OS / editor
+.DS_Store
+*.bak
+*.swp
+.vscode/
+.idea/

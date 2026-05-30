@@ -1,0 +1,336 @@
+{
+  "version": "phase 2 · week 1",
+  "phase": "phase 2",
+  "phase_label": "content",
+  "covers_days": [15, 21],
+  "audience_timezone_hint": "US East prime + EU evening · окно UTC 19:00–23:00",
+  "voice_rules": [
+    "lowercase",
+    "ироничный, slightly self-deprecating",
+    "никаких эмодзи кроме ✦ как знак-подпись",
+    "yennefer / witcher / gaming references = валюта аудитории"
+  ],
+  "days": {
+    "15": {
+      "label": "// phase 2 launch · TikTok-старт + первый cosplay-карусель",
+      "posts": [
+        {
+          "id": "d15-tt-1",
+          "channel": "tiktok",
+          "time": "19:00 UTC",
+          "format": "video-cosplay-reveal",
+          "hook": "первые 2 сек: чёрный кадр + bass drop → reveal yen в белом платье на винограднике",
+          "caption": "she found me. now what.",
+          "hashtags": "#yennefer #cosplay #witcher3 #cosplaygirl #toussaint #darkfantasy",
+          "asset": {
+            "type": "video-tbd",
+            "source_tags": ["yen", "CorvoBianco", "videofirstshot"],
+            "pipeline": "kling motion control · seed-кадр из папки videofirstshot",
+            "capcut": "grain 40 · sharp 20 · brightness -8 · vignette 12",
+            "note": "первое видео Phase 2 — задаёт тон холодному охвату. Сгенерь за 1-2 дня до 15-го."
+          }
+        },
+        {
+          "id": "d15-ig-1",
+          "channel": "instagram",
+          "time": "20:00 UTC",
+          "format": "carousel-cosplay",
+          "hook": "первый слайд = full-body shot, белое платье + виноградник, центр кадра",
+          "caption": "white dress, red wine, no witcher in sight ✦\n\ncorvo bianco tomorrow could've been ours, geralt.\nor wherever your dramatic ass ran off to this time.",
+          "hashtags": "#yennefer #cosplay #thewitcher #witcher3 #yenneferofvengerberg #cosplaygirl #toussaint #darkfantasycosplay",
+          "asset": {
+            "type": "from-library",
+            "tag_query": ["yen", "CorvoBianco", "WhiteDress"],
+            "count": 4
+          }
+        },
+        {
+          "id": "d15-ig-story",
+          "channel": "ig-story",
+          "time": "21:30 UTC",
+          "format": "story-bts",
+          "hook": "1 кадр на фоне виноградника, минимальный текст",
+          "caption": "the dress survived. that's the win.",
+          "asset": {
+            "type": "from-library",
+            "tag_query": ["yen", "CorvoBianco"],
+            "count": 1
+          }
+        },
+        {
+          "id": "d15-threads-1",
+          "channel": "threads",
+          "time": "22:30 UTC",
+          "format": "text",
+          "caption": "playing witcher 3 again. it's been 4 years.\nfind me a man like that or leave me alone."
+        }
+      ]
+    },
+
+    "16": {
+      "label": "// momentum · light day · TG soft drop",
+      "posts": [
+        {
+          "id": "d16-ig-story-am",
+          "channel": "ig-story",
+          "time": "10:00 UTC",
+          "format": "story-lifestyle",
+          "hook": "утренний кадр с кофе, естественный свет",
+          "caption": "monday energy.",
+          "asset": { "type": "from-library", "tag_query": ["home"], "count": 1 }
+        },
+        {
+          "id": "d16-threads-1",
+          "channel": "threads",
+          "time": "12:00 UTC",
+          "format": "text",
+          "caption": "having a personality is not a turn-off.\ni refuse to believe this."
+        },
+        {
+          "id": "d16-tg-1",
+          "channel": "tg",
+          "time": "20:00 UTC",
+          "format": "tg-post",
+          "hook": "1 фото + 2 строки текста, intimate vibe",
+          "caption": "my apartment has 6 candles right now.\ni'm not a witch. i just like ambiance.",
+          "asset": { "type": "from-library", "tag_query": ["home"], "count": 1 }
+        },
+        {
+          "id": "d16-threads-2",
+          "channel": "threads",
+          "time": "22:00 UTC",
+          "format": "text",
+          "caption": "named my cat after a data structure.\ngraph. as in graph theory."
+        }
+      ]
+    },
+
+    "17": {
+      "label": "// TikTok-#2 + outside aesthetic",
+      "posts": [
+        {
+          "id": "d17-tt-1",
+          "channel": "tiktok",
+          "time": "20:00 UTC",
+          "format": "video-style-transition",
+          "hook": "до/после: обычный образ → cosplay образ под бит, 1 кадр перехода",
+          "caption": "school photo era vs main character era",
+          "hashtags": "#cosplay #glowup #yennefer #goth #cosplaygirl",
+          "asset": {
+            "type": "video-tbd",
+            "source_tags": ["home", "yen"],
+            "pipeline": "kling motion control · до = home кадр, после = cosplay кадр",
+            "capcut": "grain 40 · sharp 20 · brightness -5"
+          }
+        },
+        {
+          "id": "d17-ig-story",
+          "channel": "ig-story",
+          "time": "19:00 UTC",
+          "format": "story-cafe",
+          "hook": "outside кафе кадр, минимум caption",
+          "caption": "selective with my saturdays.",
+          "asset": { "type": "from-library", "tag_query": ["outside"], "count": 1 }
+        },
+        {
+          "id": "d17-threads-1",
+          "channel": "threads",
+          "time": "21:00 UTC",
+          "format": "text",
+          "caption": "i don't want a soft boy.\ni want a boy who can argue about gandhi at 3am."
+        }
+      ]
+    },
+
+    "18": {
+      "label": "// mid-week · home lifestyle carousel + TG late-night",
+      "posts": [
+        {
+          "id": "d18-ig-1",
+          "channel": "instagram",
+          "time": "20:00 UTC",
+          "format": "carousel-lifestyle",
+          "hook": "первый слайд = late-night coding общий план, RGB подсветка",
+          "caption": "started a pixel art rpg as a side project.\nit's been 8 months. i still don't have a main character sprite.\n\nat this rate i'll release it in 2031.\nor never. probably never.",
+          "hashtags": "#gamedev #pixelart #indiedev #gamergirl #latenightcoding #goth",
+          "asset": { "type": "from-library", "tag_query": ["home"], "count": 4 }
+        },
+        {
+          "id": "d18-tt-1",
+          "channel": "tiktok",
+          "time": "21:00 UTC",
+          "format": "video-lifestyle-short",
+          "hook": "первая секунда: рука на клавиатуре, RGB → текст-оверлей",
+          "caption": "pov: it's 3am and you're 'almost done'",
+          "hashtags": "#gamergirl #devlife #latenightcoding #cozygamer",
+          "asset": {
+            "type": "video-tbd",
+            "source_tags": ["home"],
+            "pipeline": "kling motion control · seed = коди-кадр из home",
+            "capcut": "grain 35 · sharp 18 · brightness -10"
+          }
+        },
+        {
+          "id": "d18-tg-1",
+          "channel": "tg",
+          "time": "19:00 UTC",
+          "format": "tg-post",
+          "caption": "late-night supply run.\nramen, monster, regret.\nthe holy trinity.",
+          "asset": { "type": "from-library", "tag_query": ["outside"], "count": 1 }
+        },
+        {
+          "id": "d18-threads-1",
+          "channel": "threads",
+          "time": "22:00 UTC",
+          "format": "text",
+          "caption": "3am again. another witcher quest done.\nis this what they call work-life balance"
+        }
+      ]
+    },
+
+    "19": {
+      "label": "// SECOND COSPLAY DROP · Unicorn",
+      "posts": [
+        {
+          "id": "d19-ig-1",
+          "channel": "instagram",
+          "time": "19:00 UTC",
+          "format": "carousel-cosplay",
+          "hook": "первый слайд = yen рядом с unicorn-статуей, magnetic eye contact с камерой",
+          "caption": "3 books and a netflix series later... still nothing.\n\nat this point yennefer of vengerberg is just me waiting for any boy to text back.",
+          "hashtags": "#yennefer #cosplay #thewitcher #witcher3 #cosplaygirl #darkfantasy #toussaint #cosplayphotography",
+          "asset": {
+            "type": "from-library",
+            "tag_query": ["yen", "CorvoBianco", "Unicorn"],
+            "count": 4
+          }
+        },
+        {
+          "id": "d19-tt-1",
+          "channel": "tiktok",
+          "time": "20:00 UTC",
+          "format": "video-cosplay-pose",
+          "hook": "первые 2 сек: статичный кадр yen → резкое движение головой → eye contact",
+          "caption": "yen would do this. don't fight me.",
+          "hashtags": "#yennefer #cosplay #witcher3 #yenneferofvengerberg",
+          "asset": {
+            "type": "video-tbd",
+            "source_tags": ["yen", "CorvoBianco"],
+            "pipeline": "kling motion control · seed-кадр с unicorn серии",
+            "capcut": "grain 40 · sharp 22 · brightness -8 · vignette 15"
+          }
+        },
+        {
+          "id": "d19-ig-story",
+          "channel": "ig-story",
+          "time": "21:30 UTC",
+          "format": "story-bts",
+          "caption": "the unicorn was rented. don't @ me.",
+          "asset": {
+            "type": "from-library",
+            "tag_query": ["yen", "CorvoBianco", "Unicorn"],
+            "count": 1
+          }
+        },
+        {
+          "id": "d19-threads-1",
+          "channel": "threads",
+          "time": "22:30 UTC",
+          "format": "text",
+          "caption": "yennefer of vengerberg energy is just\nhaving zero patience and ten layers of trauma."
+        }
+      ]
+    },
+
+    "20": {
+      "label": "// outside · travel vibes · cafe alone",
+      "posts": [
+        {
+          "id": "d20-ig-1",
+          "channel": "instagram",
+          "time": "20:00 UTC",
+          "format": "carousel-lifestyle",
+          "hook": "первый слайд = кафе одна с латте, мягкий свет",
+          "caption": "saturday alone in a coffee shop.\nnot lonely. selective.\nthere's a difference.",
+          "hashtags": "#coffeegirl #cafeaesthetic #solodate #thatgirl",
+          "asset": { "type": "from-library", "tag_query": ["outside"], "count": 3 }
+        },
+        {
+          "id": "d20-tt-1",
+          "channel": "tiktok",
+          "time": "19:00 UTC",
+          "format": "video-dissonance",
+          "hook": "девушка говорит серьёзно «иран» — растягивая слово к концу = эмоциональный подтекст",
+          "caption": "the duality.",
+          "hashtags": "#fyp #aesthetic",
+          "asset": {
+            "type": "video-tbd",
+            "source_tags": ["home"],
+            "pipeline": "kling · close-up на лице, минимум движения, фокус на голосе",
+            "capcut": "grain 30 · sharp 25 · brightness 0"
+          }
+        },
+        {
+          "id": "d20-tg-1",
+          "channel": "tg",
+          "time": "22:00 UTC",
+          "format": "tg-post",
+          "caption": "the kind of saturday where i forget\nwhat day of the week it is.\nin a good way.",
+          "asset": { "type": "from-library", "tag_query": ["outside"], "count": 1 }
+        },
+        {
+          "id": "d20-threads-1",
+          "channel": "threads",
+          "time": "21:00 UTC",
+          "format": "text",
+          "caption": "sometimes i wonder what it would be like\nto have someone who actually waits for me."
+        }
+      ]
+    },
+
+    "21": {
+      "label": "// week 1 close · soft sensual TG drop · reset",
+      "posts": [
+        {
+          "id": "d21-ig-story",
+          "channel": "ig-story",
+          "time": "19:00 UTC",
+          "format": "story-selfie",
+          "caption": "sunday reset.",
+          "asset": { "type": "from-library", "tag_query": ["home"], "count": 1 }
+        },
+        {
+          "id": "d21-tt-1",
+          "channel": "tiktok",
+          "time": "20:00 UTC",
+          "format": "video-me-single",
+          "hook": "фото + голос: «me when i was single...» → пауза → «...i'm still single»",
+          "caption": "the plot did not twist.",
+          "hashtags": "#fyp #single #relatable #aesthetic",
+          "asset": {
+            "type": "video-tbd",
+            "source_tags": ["home"],
+            "pipeline": "kling · 1 фото home + voice-over в CapCut",
+            "capcut": "grain 35 · sharp 20"
+          }
+        },
+        {
+          "id": "d21-tg-1",
+          "channel": "tg",
+          "time": "21:00 UTC",
+          "format": "tg-soft-sensual",
+          "hook": "bedroom mood, спущенная бретелька, контролируемая чувственность · NSFW нет",
+          "caption": "the things i post here are tame\ncompared to what's on my phone.",
+          "asset": { "type": "from-library", "tag_query": ["home"], "count": 1 }
+        },
+        {
+          "id": "d21-threads-1",
+          "channel": "threads",
+          "time": "22:00 UTC",
+          "format": "text",
+          "caption": "week one of being a person who posts on the internet.\nstill alive. that counts."
+        }
+      ]
+    }
+  }
+}

@@ -418,63 +418,6 @@ section {
   margin-bottom: 12px;
 }
 
-.task-photo-slot {
-  background: var(--bg-4);
-  border: 1px dashed var(--line);
-  padding: 12px 14px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.task-photo-slot.has-photo {
-  border-style: solid;
-  border-color: var(--accent);
-}
-
-.task-photo-thumb {
-  width: 48px;
-  height: 60px;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 8px;
-  color: var(--muted);
-  text-align: center;
-  overflow: hidden;
-}
-
-.task-photo-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.task-photo-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.task-photo-name {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: var(--fg);
-  margin-bottom: 2px;
-  word-break: break-all;
-}
-
-.task-photo-hint {
-  font-size: 11px;
-  color: var(--muted);
-  font-style: italic;
-}
-
 .task-text-snippet {
   background: var(--bg);
   border-left: 2px solid var(--accent);
@@ -761,6 +704,482 @@ footer {
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
+
+/* PICK PHOTO BUTTON */
+.pick-photo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  margin: 10px 0;
+  background: var(--bg-4);
+  border: 1px dashed var(--line);
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  font-family: inherit;
+  text-align: left;
+  color: var(--fg);
+}
+
+.pick-photo:hover {
+  border-color: var(--accent);
+  border-style: solid;
+  background: var(--bg-3);
+}
+
+.pick-photo .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.pick-photo .hint {
+  font-size: 12px;
+  color: var(--fg-2);
+  flex: 1;
+  line-height: 1.4;
+}
+
+/* PICKED PHOTO */
+.picked-photo {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  padding: 12px;
+  margin: 10px 0;
+  background: var(--bg-4);
+  border: 1px solid var(--accent);
+}
+
+.picked-photo .thumb {
+  width: 56px;
+  height: 72px;
+  background: var(--bg);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.picked-photo .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.picked-photo .meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.picked-photo .meta .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.picked-photo .meta .hint {
+  font-size: 12px;
+  color: var(--fg-2);
+  line-height: 1.4;
+}
+
+.picked-photo .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+}
+
+.picked-photo .actions button {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--fg-2);
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.picked-photo .actions button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.picked-photo .actions button.clear:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* GALLERY MODAL */
+.gallery-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 9, 8, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+
+.gallery-overlay.open { display: flex; }
+
+.gallery-modal {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  width: 100%;
+  max-width: 1000px;
+  padding: 24px;
+  position: relative;
+}
+
+.gallery-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.gallery-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+}
+
+.gallery-title .tag {
+  color: var(--accent);
+}
+
+.gallery-close {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--fg-2);
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.gallery-close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.gallery-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 60px 20px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 720px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.gallery-item {
+  aspect-ratio: 3 / 4;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: all 0.15s;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-item:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============ PHASE 2 · POST CARDS ============ */
+.post-card {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  padding: 18px 20px;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 14px;
+  transition: all 0.2s;
+}
+
+.post-card.done {
+  opacity: 0.5;
+  border-left-color: var(--muted);
+}
+
+.post-card.done .post-caption,
+.post-card.done .post-hashtags { text-decoration: line-through; }
+
+.post-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.post-check {
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--accent);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.post-card.done .post-check {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.post-card.done .post-check::after {
+  content: '✓';
+  color: var(--bg);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.post-channel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  background: rgba(240, 165, 0, 0.08);
+  border: 1px solid rgba(240, 165, 0, 0.2);
+}
+
+.post-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-2);
+}
+
+.post-format {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-left: auto;
+}
+
+.post-hook {
+  background: var(--bg);
+  border-left: 2px solid var(--fg-2);
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--fg-2);
+  font-style: italic;
+  margin: 8px 0 12px;
+  line-height: 1.5;
+}
+
+.post-hook::before {
+  content: '// hook · ';
+  font-style: normal;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.post-caption-block,
+.post-hashtags-block {
+  margin: 10px 0;
+  position: relative;
+}
+
+.post-caption {
+  background: var(--bg);
+  border-left: 2px solid var(--accent);
+  padding: 12px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--fg);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.post-hashtags {
+  background: var(--bg);
+  border-left: 2px solid var(--accent-2);
+  padding: 10px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-2);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.post-copy-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid rgba(240, 165, 0, 0.3);
+  padding: 3px 8px;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: all 0.15s;
+}
+
+.post-copy-btn:hover { background: rgba(240, 165, 0, 0.1); }
+.post-copy-btn.copied { color: var(--green); border-color: var(--green); }
+
+.post-asset {
+  margin-top: 14px;
+}
+
+.post-asset-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.post-asset-count {
+  color: var(--accent);
+}
+
+.post-asset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 110px));
+  gap: 6px;
+}
+
+.post-asset-photo {
+  aspect-ratio: 3 / 4;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.post-asset-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.post-asset-empty {
+  background: var(--bg);
+  border: 1px dashed var(--red);
+  padding: 12px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--red);
+  line-height: 1.5;
+}
+
+.post-asset-tbd {
+  background: var(--bg);
+  border: 1px solid var(--accent-2);
+  border-left: 3px solid var(--accent-2);
+  padding: 12px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-2);
+  line-height: 1.7;
+}
+
+.post-asset-tbd .tbd-label {
+  color: var(--accent-2);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 10px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.post-asset-tbd .tbd-row {
+  display: flex;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.post-asset-tbd .tbd-key {
+  color: var(--muted);
+  min-width: 70px;
+  flex-shrink: 0;
+}
+
+.post-asset-tbd .tbd-val {
+  color: var(--fg);
+}
+
+.plan-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--fg-2);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.plan-empty .em {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
 </style>
 </head>
 <body>
@@ -824,11 +1243,6 @@ footer {
 
   <div class="config-panel">
     <div class="config-row">
-      <div class="config-label">// cloudinary cloud name</div>
-      <input class="config-input" type="text" id="cfg-cloudinary"
-             placeholder="e.g. dabc1234 (from cloudinary.com dashboard)" />
-    </div>
-    <div class="config-row">
       <div class="config-label">// timezone</div>
       <input class="config-input" type="text" id="cfg-timezone" value="UTC+7 (Vietnam)" />
     </div>
@@ -889,12 +1303,121 @@ footer {
   </div>
 </section>
 
+<div class="gallery-overlay" id="gallery-overlay" onclick="if(event.target===this) closeGallery()">
+  <div class="gallery-modal">
+    <div class="gallery-head">
+      <div class="gallery-title">pick photo from <span class="tag" id="gallery-tag-label"></span></div>
+      <button class="gallery-close" onclick="closeGallery()">close ×</button>
+    </div>
+    <div id="gallery-body"></div>
+  </div>
+</div>
+
 <footer>
   <div class="footer-brand">KEIRA.OS / <span style="color: var(--accent);">v3.1</span> · operational</div>
   <div class="footer-meta">AIVFX × @djiyvlom · 27.05.2026</div>
 </footer>
 
 <script>
+// ========== CLOUDINARY ==========
+const CLOUDINARY_CLOUD = 'dtozr9ul9';
+const cloudinaryCache = {};
+let _currentPickTarget = null;
+
+async function loadCloudinaryTag(tag) {
+  if (cloudinaryCache[tag]) return cloudinaryCache[tag];
+  const url = `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/list/${tag}.json`;
+  const r = await fetch(url);
+  if (!r.ok) throw new Error('http ' + r.status);
+  const data = await r.json();
+  const items = (data.resources || []).map(res => ({
+    url: `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/upload/v${res.version}/${res.public_id}.${res.format}`,
+    thumb: `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/upload/w_400,h_533,c_fill,q_auto,f_auto/v${res.version}/${res.public_id}.${res.format}`,
+    public_id: res.public_id
+  }));
+  cloudinaryCache[tag] = items;
+  return items;
+}
+
+async function openGallery(taskIdx, tag) {
+  _currentPickTarget = { taskIdx, tag };
+  document.getElementById('gallery-tag-label').textContent = '/' + tag;
+  const body = document.getElementById('gallery-body');
+  body.innerHTML = '<div class="gallery-status">// loading ' + tag + '...</div>';
+  document.getElementById('gallery-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  try {
+    const items = await loadCloudinaryTag(tag);
+    if (!items || items.length === 0) {
+      body.innerHTML = '<div class="gallery-status">// no photos tagged "' + tag + '" yet<br>upload to cloudinary &amp; add this tag</div>';
+      return;
+    }
+    body.innerHTML = '<div class="gallery-grid">' + items.map(it => {
+      const safe = it.url.replace(/'/g, "\\'");
+      return '<div class="gallery-item" onclick="selectPhoto(\'' + safe + '\')"><img src="' + it.thumb + '" alt="" loading="lazy"></div>';
+    }).join('') + '</div>';
+  } catch (e) {
+    body.innerHTML = '<div class="gallery-status">// error: ' + e.message + '<br>check that "Resource list" is enabled in cloudinary security settings</div>';
+  }
+}
+
+function selectPhoto(url) {
+  if (!_currentPickTarget) return;
+  const key = 'task-photo-' + currentDay + '-' + _currentPickTarget.taskIdx;
+  localStorage.setItem(key, url);
+  closeGallery();
+  renderToday();
+}
+
+function clearPhoto(taskIdx) {
+  localStorage.removeItem('task-photo-' + currentDay + '-' + taskIdx);
+  renderToday();
+}
+
+function closeGallery() {
+  document.getElementById('gallery-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  _currentPickTarget = null;
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeGallery();
+});
+
+// ========== LIBRARY + PLAN (Phase 2 data) ==========
+let LIBRARY = null;
+let PLAN = null;
+let _loadedAt = null;
+
+async function loadLibraryAndPlan() {
+  try {
+    const [libRes, planRes] = await Promise.all([
+      fetch('library.json', { cache: 'no-cache' }),
+      fetch('plan.json',    { cache: 'no-cache' })
+    ]);
+    if (libRes.ok)  LIBRARY = await libRes.json();
+    if (planRes.ok) PLAN    = await planRes.json();
+    _loadedAt = new Date();
+  } catch (e) {
+    console.warn('library/plan не загрузились:', e.message);
+  }
+}
+
+function findPhotos(tagQuery, count) {
+  if (!LIBRARY || !LIBRARY.photos) return [];
+  const tags = (tagQuery || []).map(t => String(t));
+  const matches = LIBRARY.photos.filter(p =>
+    tags.every(t => (p.tags || []).includes(t))
+  );
+  return count ? matches.slice(0, count) : matches;
+}
+
+function getPlanDay(dayNum) {
+  if (!PLAN || !PLAN.days) return null;
+  return PLAN.days[String(dayNum)] || null;
+}
+
+// ========== PHASES / DAYS ==========
 const PHASES = [
   { id: 0, name: 'phase 0', label: 'setup', days: [1, 4] },
   { id: 1, name: 'phase 1', label: 'warmup', days: [5, 14] },
@@ -1030,7 +1553,7 @@ const DAYS = [
       {
         channel: 'instagram',
         text: 'IG — первое фото (простое, без heavy caption)',
-        photo: { name: 'lifestyle/mirror-selfie-01', hint: 'mirror selfie утро ИЛИ late-night coding общий план', folder: 'lifestyle' },
+        photo: { hint: 'mirror selfie утро ИЛИ late-night coding общий план', folder: 'lifestyle' },
         snippet: 'just here.'
       },
       {
@@ -1051,13 +1574,13 @@ const DAYS = [
       {
         channel: 'instagram',
         text: 'IG — первая story',
-        photo: { name: 'live/coffee-morning-01', hint: 'утро с матчей ИЛИ кофе POV', folder: 'live' },
+        photo: { hint: 'утро с матчей ИЛИ кофе POV', folder: 'live' },
         snippet: 'monday again 💀'
       },
       {
         channel: 'tg',
         text: 'TG канал — закреп с 3 фото',
-        photo: { name: 'lifestyle/3-pin-photos', hint: 'bedroom mood + mirror selfie + late-night coding', folder: 'lifestyle' },
+        photo: { hint: 'bedroom mood + mirror selfie + late-night coding', folder: 'lifestyle' },
         snippet: 'hi i\'m keira ✦\nthe softer side of my life\n\njust chatting here.\nnot posting everything anywhere else.'
       }
     ]
@@ -1073,7 +1596,7 @@ const DAYS = [
       {
         channel: 'tg',
         text: 'TG — первый обычный пост',
-        photo: { name: 'lifestyle/coding-wide-01', hint: 'Late-night coding общий план', folder: 'lifestyle' },
+        photo: { hint: 'Late-night coding общий план', folder: 'lifestyle' },
         snippet: 'my apartment has 6 candles right now.\ni\'m not a witch. i just like ambiance.'
       },
       {
@@ -1094,13 +1617,13 @@ const DAYS = [
       {
         channel: 'tg',
         text: 'TG пост — gaming aesthetic',
-        photo: { name: 'lifestyle/coding-keyboard', hint: 'руки на клавиатуре + RGB', folder: 'lifestyle' },
+        photo: { hint: 'руки на клавиатуре + RGB', folder: 'lifestyle' },
         snippet: 'who else organizes life by what game\'s coming out next.'
       },
       {
         channel: 'instagram',
         text: 'IG story — kitchen ramen',
-        photo: { name: 'lifestyle/kitchen-ramen-01', hint: 'kitchen ramen close-up', folder: 'lifestyle' },
+        photo: { hint: 'kitchen ramen close-up', folder: 'lifestyle' },
         snippet: 'lunch.'
       }
     ]
@@ -1116,7 +1639,7 @@ const DAYS = [
       {
         channel: 'tg',
         text: 'TG — bedroom mood (первый soft sensual)',
-        photo: { name: 'lifestyle/bedroom-strap-01', hint: 'спущенная бретелька + bedroom', folder: 'lifestyle' },
+        photo: { hint: 'спущенная бретелька + bedroom', folder: 'lifestyle' },
         snippet: 'the things i post here are tame\ncompared to what\'s on my phone.'
       },
       {
@@ -1132,13 +1655,13 @@ const DAYS = [
       {
         channel: 'instagram',
         text: 'IG carousel — Yennefer Корво Бьянко (4 кадра серии)',
-        photo: { name: 'yennefer/corvo-bianco-1234', hint: 'все 4 фото серии Корво Бьянко', folder: 'yennefer' },
+        photo: { hint: 'все 4 фото серии Корво Бьянко', folder: 'yennefer' },
         snippet: 'yen waiting for geralt to remember she exists ✦\n\ncorvo bianco tomorrow could\'ve been ours, witcher.\nor wherever your dramatic ass ran off to this time.\n\n#yennefer #cosplay #thewitcher #witcher3 #yenneferofvengerberg #cosplaygirl #toussaint'
       },
       {
         channel: 'instagram',
         text: 'IG story — closeup чокер + Witcher 3 reference',
-        photo: { name: 'yennefer/choker-closeup', hint: 'close-up на обсидиановую звезду', folder: 'yennefer' },
+        photo: { hint: 'close-up на обсидиановую звезду', folder: 'yennefer' },
         snippet: 'the only commitment i keep'
       },
       {
@@ -1149,7 +1672,7 @@ const DAYS = [
       {
         channel: 'tg',
         text: 'TG — 2 фото из Yennefer серии',
-        photo: { name: 'yennefer/corvo-bianco-selected', hint: 'выбрать 2 любимых из серии', folder: 'yennefer' },
+        photo: { hint: 'выбрать 2 любимых из серии', folder: 'yennefer' },
         snippet: 'yennefer day.\ncostume on, regrets off.'
       }
     ]
@@ -1170,7 +1693,7 @@ const DAYS = [
       {
         channel: 'tg',
         text: 'TG пост — кафе одна',
-        photo: { name: 'live/cafe-alone-01', hint: 'кафе одна с латте', folder: 'live' },
+        photo: { hint: 'кафе одна с латте', folder: 'live' },
         snippet: 'saturday alone in a coffee shop.\nnot lonely. selective.\nthere\'s a difference.'
       }
     ]
@@ -1181,13 +1704,13 @@ const DAYS = [
       {
         channel: 'instagram',
         text: 'IG carousel — late-night coding aesthetic',
-        photo: { name: 'lifestyle/coding-1234', hint: 'late-night coding серия — 4 кадра', folder: 'lifestyle' },
+        photo: { hint: 'late-night coding серия — 4 кадра', folder: 'lifestyle' },
         snippet: 'started a pixel art rpg as a side project.\nit\'s been 8 months. i still don\'t have a main character sprite.\n\nat this rate i\'ll release it in 2031.\nor never. probably never.\n\n#gamedev #pixelart #indiedev #gamergirl #latenightcoding'
       },
       {
         channel: 'tg',
         text: 'TG — 7/11 ночной',
-        photo: { name: 'lifestyle/seven-eleven-01', hint: '7/11 у холодильника', folder: 'lifestyle' },
+        photo: { hint: '7/11 у холодильника', folder: 'lifestyle' },
         snippet: 'late-night supply run.\nramen, monster, regret.\nthe holy trinity.'
       },
       {
@@ -1203,7 +1726,7 @@ const DAYS = [
       {
         channel: 'instagram',
         text: 'IG carousel — Каэр Морхен',
-        photo: { name: 'yennefer/kaer-morhen-1234', hint: 'все 4 фото Каэр Морхен', folder: 'yennefer' },
+        photo: { hint: 'все 4 фото Каэр Морхен', folder: 'yennefer' },
         snippet: '3 books and a netflix series later... still nothing.\n\nat this point yennefer of vengerberg is just me waiting for any boy to text back.\n\n#yennefer #cosplay #thewitcher #witcher3 #kaermorhen #cosplaygirl #darkfantasy'
       },
       {
@@ -1219,7 +1742,7 @@ const DAYS = [
       {
         channel: 'tg',
         text: 'TG — Каэр Морхен 3 фото',
-        photo: { name: 'yennefer/kaer-morhen-selected', hint: '3 любимых из серии', folder: 'yennefer' },
+        photo: { hint: '3 любимых из серии', folder: 'yennefer' },
         snippet: 'kaer morhen sundays.\nnot feeling it tonight.'
       }
     ]
@@ -1263,27 +1786,19 @@ let currentDay = parseInt(localStorage.getItem('keira-currentDay') || '0');
 
 function getPhaseInfo(dayIdx) {
   const day = DAYS[dayIdx];
-  if (!day) return PHASES[0];
+  if (!day) return PHASES.find(p => p.id === 2) || PHASES[0];
   return PHASES.find(p => p.id === day.phase) || PHASES[0];
 }
 
 function renderToday() {
+  // Phase 2+: рендерим из plan.json
   if (currentDay >= DAYS.length) {
-    document.getElementById('task-list').innerHTML = `
-      <div style="padding: 40px; text-align: center; color: var(--fg-2);">
-        <div style="font-family: 'Inter Tight'; font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 12px;">phase 1 complete</div>
-        <p>Phase 0 + warmup пройдены. Дальше — Phase 2 (content launch).<br>Попроси Claude расширить план на следующие 30 дней.</p>
-      </div>
-    `;
-    document.getElementById('today-day-num').textContent = '—';
-    document.getElementById('today-label').textContent = '// extend the plan';
-    document.getElementById('today-counter').textContent = '';
+    renderPlanDay(currentDay + 1);
     return;
   }
 
   const day = DAYS[currentDay];
   const phase = getPhaseInfo(currentDay);
-  const cloudinary = (localStorage.getItem('cfg-cloudinary') || '').trim();
 
   document.getElementById('today-phase').textContent = phase.name;
   document.getElementById('today-day-num').textContent = day.day;
@@ -1298,20 +1813,34 @@ function renderToday() {
     const isDone = done[i];
     let photoHTML = '';
     if (t.photo) {
-      const photoUrl = cloudinary
-        ? `https://res.cloudinary.com/${cloudinary}/image/upload/keira/${t.photo.name}.jpg`
-        : '';
-      photoHTML = `
-        <div class="task-photo-slot ${photoUrl ? 'has-photo' : ''}">
-          <div class="task-photo-thumb">
-            ${photoUrl ? `<img src="${photoUrl}" onerror="this.style.display='none';this.parentElement.textContent='PHOTO'" alt="">` : 'PHOTO'}
+      const tag = t.photo.folder || 'lifestyle';
+      const hintHtml = (t.photo.hint || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      const pickedUrl = localStorage.getItem('task-photo-' + currentDay + '-' + i);
+      if (pickedUrl) {
+        photoHTML = `
+          <div class="picked-photo">
+            <div class="thumb"><img src="${pickedUrl}" alt=""></div>
+            <div class="meta">
+              <div class="label">// picked · /${tag}</div>
+              <div class="hint">${hintHtml}</div>
+            </div>
+            <div class="actions">
+              <button onclick="event.stopPropagation(); openGallery(${i}, '${tag}')">change</button>
+              <button class="clear" onclick="event.stopPropagation(); clearPhoto(${i})">clear</button>
+            </div>
           </div>
-          <div class="task-photo-info">
-            <div class="task-photo-name">${t.photo.name}.jpg</div>
-            <div class="task-photo-hint">${t.photo.hint || ''}</div>
-          </div>
-        </div>
-      `;
+        `;
+      } else {
+        photoHTML = `
+          <button class="pick-photo" onclick="event.stopPropagation(); openGallery(${i}, '${tag}')">
+            <span class="label">// pick from /${tag}</span>
+            <span class="hint">${hintHtml}</span>
+          </button>
+        `;
+      }
     }
 
     let snippetHTML = '';
@@ -1357,14 +1886,156 @@ function toggleTask(i) {
   renderPhases();
 }
 
-function nextDay() {
-  if (currentDay < DAYS.length) {
-    currentDay++;
-    localStorage.setItem('keira-currentDay', currentDay);
-    renderToday();
-    renderPhases();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// ========== PHASE 2 · PLAN RENDERING ==========
+function renderPlanDay(dayNum) {
+  const phase = PHASES.find(p => p.id === 2) || PHASES[0];
+  document.getElementById('today-phase').textContent = phase.name;
+  document.getElementById('today-day-num').textContent = dayNum;
+
+  const dayData = getPlanDay(dayNum);
+
+  if (!dayData) {
+    document.getElementById('today-label').textContent = '// not yet planned';
+    document.getElementById('today-counter').textContent = '';
+    document.getElementById('task-list').innerHTML = `
+      <div class="plan-empty">
+        <div class="em">phase 2 · day ${dayNum} · план ещё не написан</div>
+        <p>Скажи Claude «расширь план на день ${dayNum}» — добавлю.<br>
+        Сейчас в plan.json расписаны дни ${PLAN ? Object.keys(PLAN.days).join(', ') : '(plan.json не загружен)'}.</p>
+      </div>
+    `;
+    document.getElementById('overall-label').textContent = `${phase.name} / day ${dayNum}`;
+    document.getElementById('overall-progress').style.width = '100%';
+    return;
   }
+
+  document.getElementById('today-label').textContent = dayData.label || '';
+
+  const posts = dayData.posts || [];
+  const doneCount = posts.filter(p => localStorage.getItem(`post-done-${p.id}`) === '1').length;
+  document.getElementById('today-counter').textContent = `${doneCount} / ${posts.length} done`;
+
+  const list = document.getElementById('task-list');
+  list.innerHTML = posts.map(p => renderPostCard(p)).join('');
+
+  // overall progress: оценим по доле сделанных постов всего плана
+  let totalPosts = 0, totalDone = 0;
+  if (PLAN && PLAN.days) {
+    Object.values(PLAN.days).forEach(d => {
+      (d.posts || []).forEach(pp => {
+        totalPosts++;
+        if (localStorage.getItem(`post-done-${pp.id}`) === '1') totalDone++;
+      });
+    });
+  }
+  const overall = totalPosts > 0 ? (totalDone / totalPosts) * 100 : 0;
+  document.getElementById('overall-progress').style.width = `${overall}%`;
+  document.getElementById('overall-label').textContent = `${phase.name} / day ${dayNum}`;
+}
+
+function renderPostCard(p) {
+  const isDone = localStorage.getItem(`post-done-${p.id}`) === '1';
+  const esc = s => String(s || '')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  const hookHtml = p.hook
+    ? `<div class="post-hook">${esc(p.hook)}</div>`
+    : '';
+
+  const captionHtml = p.caption
+    ? `<div class="post-caption-block">
+         <div class="post-caption">${esc(p.caption)}</div>
+         <button class="post-copy-btn" onclick="event.stopPropagation(); copyText(this.previousElementSibling.textContent, this)">copy caption</button>
+       </div>`
+    : '';
+
+  const hashtagsHtml = p.hashtags
+    ? `<div class="post-hashtags-block">
+         <div class="post-hashtags">${esc(p.hashtags)}</div>
+         <button class="post-copy-btn" onclick="event.stopPropagation(); copyText(this.previousElementSibling.textContent, this)">copy hashtags</button>
+       </div>`
+    : '';
+
+  let assetHtml = '';
+  if (p.asset) {
+    if (p.asset.type === 'from-library') {
+      const photos = findPhotos(p.asset.tag_query, p.asset.count);
+      const need = p.asset.count || photos.length;
+      const have = photos.length;
+      const tagPath = (p.asset.tag_query || []).join('/');
+
+      if (have === 0) {
+        assetHtml = `
+          <div class="post-asset">
+            <div class="post-asset-label">// asset · /${esc(tagPath)} · нужно ${need}</div>
+            <div class="post-asset-empty">no photos found for tags [${esc(tagPath)}].\nЗалей в Cloudinary в подпапку → ksync.</div>
+          </div>
+        `;
+      } else {
+        assetHtml = `
+          <div class="post-asset">
+            <div class="post-asset-label">
+              // asset · /${esc(tagPath)} ·
+              <span class="post-asset-count">${have}/${need}</span>
+              ${have < need ? ` · не хватает ${need - have}` : ''}
+            </div>
+            <div class="post-asset-grid">
+              ${photos.map(ph => `<div class="post-asset-photo"><img src="${esc(ph.thumb || ph.url)}" alt="" loading="lazy"></div>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+    } else if (p.asset.type === 'video-tbd') {
+      const rows = [];
+      if (p.asset.source_tags) rows.push(['source', '/' + p.asset.source_tags.join('/')]);
+      if (p.asset.pipeline)    rows.push(['pipeline', p.asset.pipeline]);
+      if (p.asset.capcut)      rows.push(['capcut',  p.asset.capcut]);
+      if (p.asset.note)        rows.push(['note',    p.asset.note]);
+
+      assetHtml = `
+        <div class="post-asset">
+          <div class="post-asset-tbd">
+            <span class="tbd-label">// video task · generate via kling</span>
+            ${rows.map(([k, v]) =>
+              `<div class="tbd-row"><span class="tbd-key">${esc(k)}</span><span class="tbd-val">${esc(v)}</span></div>`
+            ).join('')}
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  return `
+    <div class="post-card ${isDone ? 'done' : ''}" data-post-id="${esc(p.id)}">
+      <div class="post-head">
+        <div class="post-check" onclick="togglePost('${esc(p.id)}')"></div>
+        <span class="post-channel">// ${esc(p.channel)}</span>
+        ${p.time ? `<span class="post-time">${esc(p.time)}</span>` : ''}
+        ${p.format ? `<span class="post-format">${esc(p.format)}</span>` : ''}
+      </div>
+      ${hookHtml}
+      ${captionHtml}
+      ${hashtagsHtml}
+      ${assetHtml}
+    </div>
+  `;
+}
+
+function togglePost(postId) {
+  const key = `post-done-${postId}`;
+  const isDone = localStorage.getItem(key) === '1';
+  if (isDone) localStorage.removeItem(key);
+  else        localStorage.setItem(key, '1');
+  renderToday();
+  renderPhases();
+}
+
+function nextDay() {
+  currentDay++;
+  localStorage.setItem('keira-currentDay', currentDay);
+  renderToday();
+  renderPhases();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function prevDay() {
@@ -1386,10 +2057,12 @@ function resetDay() {
 }
 
 function jumpTo() {
-  const target = prompt(`К какому дню перейти? (1-${DAYS.length})`);
+  const planMax = (PLAN && PLAN.days) ? Math.max(0, ...Object.keys(PLAN.days).map(Number)) : 0;
+  const maxDay = Math.max(DAYS.length, planMax);
+  const target = prompt(`К какому дню перейти? (1-${maxDay})`);
   if (target) {
     const n = parseInt(target);
-    if (!isNaN(n) && n >= 1 && n <= DAYS.length) {
+    if (!isNaN(n) && n >= 1) {
       currentDay = n - 1;
       localStorage.setItem('keira-currentDay', currentDay);
       renderToday();
@@ -1415,22 +2088,43 @@ async function copyText(text, btn) {
 
 function renderPhases() {
   const container = document.getElementById('phases-row');
-  container.innerHTML = PHASES.map(p => {
-    const phaseDays = DAYS.filter(d => d.phase === p.id);
-    let phaseTasks = 0, phaseDone = 0;
-    phaseDays.forEach(d => {
-      const dayIdx = DAYS.indexOf(d);
-      phaseTasks += d.tasks.length;
-      const done = JSON.parse(localStorage.getItem(`day-${dayIdx}-tasks`) || '[]');
-      phaseDone += done.filter(Boolean).length;
-    });
-    const progress = phaseTasks > 0 ? (phaseDone / phaseTasks) * 100 : 0;
-    const isCurrent = DAYS[currentDay] && DAYS[currentDay].phase === p.id;
-    const isDone = DAYS[currentDay] && DAYS[currentDay].phase > p.id;
+  const curDayNum = currentDay + 1;
 
-    const firstDay = phaseDays[0];
-    const firstDayIdx = firstDay ? DAYS.indexOf(firstDay) : 0;
-    const tasksLabel = phaseTasks > 0 ? `${phaseDone}/${phaseTasks} tasks` : 'coming';
+  container.innerHTML = PHASES.map(p => {
+    let phaseTasks = 0, phaseDone = 0;
+    let firstDayIdx = 0;
+    let tasksLabel = 'coming';
+
+    if (p.id === 2) {
+      // Phase 2 — счёт из plan.json (посты вместо тасков)
+      if (PLAN && PLAN.days) {
+        Object.values(PLAN.days).forEach(d => {
+          (d.posts || []).forEach(post => {
+            phaseTasks++;
+            if (localStorage.getItem(`post-done-${post.id}`) === '1') phaseDone++;
+          });
+        });
+        firstDayIdx = DAYS.length; // первый день Phase 2 = индекс после конца DAYS
+        tasksLabel = phaseTasks > 0 ? `${phaseDone}/${phaseTasks} posts` : 'coming';
+      }
+    } else {
+      // Phase 0/1 — старая логика из DAYS
+      const phaseDays = DAYS.filter(d => d.phase === p.id);
+      phaseDays.forEach(d => {
+        const dayIdx = DAYS.indexOf(d);
+        phaseTasks += d.tasks.length;
+        const done = JSON.parse(localStorage.getItem(`day-${dayIdx}-tasks`) || '[]');
+        phaseDone += done.filter(Boolean).length;
+      });
+      const firstDay = phaseDays[0];
+      firstDayIdx = firstDay ? DAYS.indexOf(firstDay) : 0;
+      tasksLabel = phaseTasks > 0 ? `${phaseDone}/${phaseTasks} tasks` : 'coming';
+    }
+
+    const progress = phaseTasks > 0 ? (phaseDone / phaseTasks) * 100 : 0;
+    const maxDayOfPhase = p.days[1] === '∞' ? Infinity : p.days[1];
+    const isCurrent = curDayNum >= p.days[0] && curDayNum <= maxDayOfPhase;
+    const isDone = curDayNum > maxDayOfPhase;
 
     return `
       <button class="phase-pill ${isCurrent ? 'active' : ''} ${isDone ? 'done' : ''}" onclick="jumpToPhase(${firstDayIdx}, ${phaseTasks > 0 ? 'true' : 'false'})">
@@ -1444,10 +2138,7 @@ function renderPhases() {
 }
 
 function jumpToPhase(dayIdx, hasContent) {
-  if (!hasContent) {
-    alert('Эта фаза пока пустая. Попроси Claude расширить план.');
-    return;
-  }
+  // всегда переходим — пустую фазу красиво покажет renderPlanDay
   currentDay = dayIdx;
   localStorage.setItem('keira-currentDay', currentDay);
   renderToday();
@@ -1504,13 +2195,12 @@ function renderRules() {
 }
 
 function initConfig() {
-  ['cfg-cloudinary', 'cfg-timezone', 'cfg-audience', 'cfg-vpn', 'cfg-ig', 'cfg-tt', 'cfg-tg'].forEach(id => {
+  ['cfg-timezone', 'cfg-audience', 'cfg-vpn', 'cfg-ig', 'cfg-tt', 'cfg-tg'].forEach(id => {
     const el = document.getElementById(id);
     const saved = localStorage.getItem(id);
     if (saved) el.value = saved;
     el.addEventListener('input', e => {
       localStorage.setItem(id, e.target.value);
-      if (id === 'cfg-cloudinary') renderToday();
     });
   });
 }
@@ -1525,6 +2215,12 @@ renderPhases();
 renderIncome();
 renderMetrics();
 renderRules();
+
+// после fetch плана/библиотеки — перерисуем (для Phase 2 нужны эти данные)
+loadLibraryAndPlan().then(() => {
+  renderToday();
+  renderPhases();
+});
 </script>
 
 </body>
